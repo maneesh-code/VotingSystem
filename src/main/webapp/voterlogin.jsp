@@ -24,12 +24,12 @@
 		<div class="card-text">
 			<!--
 			<div class="alert alert-danger alert-dismissible fade show" role="alert">Incorrect username or password.</div> -->
-			<form action="register_user_id" method="post">
+			<form action="registerUserId" method="post">
 				<!-- to error: add class "has-danger" -->
 				<div class="form-group">
 					<label for="exampleInputEmail1">Email address</label>
 					<input 
-					name="voterEmailAddress"
+					name="voteremailaddress"
 					type="email" 
 					class="form-control form-control-sm" 
 					id="exampleInputEmail1" 
@@ -39,7 +39,7 @@
 					<label for="exampleInputPassword1">Password</label>
 					<a href="#" style="float:right;font-size:12px;">Forgot password?</a>
 					<input 
-					name="voterPassword"
+					name="voterpassword"
 					type="password" 
 					class="form-control form-control-sm" 
 					id="exampleInputPassword1"/>

@@ -24,20 +24,21 @@
 		<div class="card-text">
 			<!--
 			<div class="alert alert-danger alert-dismissible fade show" role="alert">Incorrect username or password.</div> -->
-			<form action="RegisterVoterId" method="post">
+			<form action="register_user_id" method="post">
 				<!-- to error: add class "has-danger" -->
 				<div class="form-group">
 					<label for="exampleInputEmail1">Name</label>
 					<input 
+					name="votername"
 					type="text" 
-					name="voterName"
 					class="form-control form-control-sm" 
-					id="voterName" 
+					id="votername" 
 					aria-describedby="emailHelp">
 				</div>
 				<div class="form-group">
 					<label for="exampleInputEmail1">Aadhar number</label>
 					<input 
+					name="voteraadhar"
 					type="text" 
 					class="form-control form-control-sm" 
 					id="voterAadhar" 
@@ -46,6 +47,7 @@
 				<div class="form-group">
 					<label for="exampleInputEmail1">Email address</label>
 					<input 
+					name="voteremailaddress"
 					type="email" 
 					class="form-control form-control-sm" 
 					id="voterEmail" 
@@ -54,6 +56,7 @@
 				<div class="form-group">
 					<label for="exampleInputPassword1">Password</label>
 					<input 
+					name="voterpassword"					
 					type="password" 
 					class="form-control form-control-sm" 
 					id="voterPassword">

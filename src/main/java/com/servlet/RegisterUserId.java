@@ -22,15 +22,22 @@ public class RegisterUserId extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		try {
-			String email = request.getParameter("voterEmailAddress");
-			String password = request.getParameter("voterPassword");
+			String name = request.getParameter("votername");
+			String aadhar = request.getParameter("voteraadhar");
+			String email = request.getParameter("voteremailaddress");
+			String password = request.getParameter("voterpassword");
 			
-			UserCredentials usercredentials = new UserCredentials(email, password);
+			UserCredentials usercredentials = new UserCredentials(0, name, aadhar, email, password);
 			
 			System.out.println(
-			usercredentials.getId() + " : " + 
+			usercredentials.getVoterid() + " : " + 
+			usercredentials.getName() + " : " +
+			usercredentials.getAadhar() + " : " +
 			usercredentials.getEmail() + " : " + 
 			usercredentials.getPassword());
+			
+			String sql = " insert into users (name, aadhar, email, password)"
+				    + " values (getName(), getAadhar(), getEmail(), getPassword(),)";
 		}
 		catch (Exception e) {
 			e.printStackTrace(); 

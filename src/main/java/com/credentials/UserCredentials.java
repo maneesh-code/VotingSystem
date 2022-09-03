@@ -10,14 +10,28 @@ import javax.persistence.Table;
 public class UserCredentials {
 	
 	@Id
-	private int id;
+	private int voterid;
+	private String name;
+	private String aadhar;
 	private String email;
 	private String password;
-	public int getId() {
-		return id;
+	public int getVoterid() {
+		return voterid;
 	}
-	public void setId(int id) {
-		this.id = id;
+	public void setVoterid(int voterid) {
+		this.voterid = voterid;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getAadhar() {
+		return aadhar;
+	}
+	public void setAadhar(String aadhar) {
+		this.aadhar = aadhar;
 	}
 	public String getEmail() {
 		return email;
@@ -31,14 +45,17 @@ public class UserCredentials {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public UserCredentials(String email, String password) {
+	public UserCredentials(int voterid, String name, String aadhar, String email, String password) {
 		super();
-		this.id = new Random().nextInt(1000000); 
+		this.voterid = new Random().nextInt(1000000); 
+		this.name = name;
+		this.aadhar = aadhar;
 		this.email = email;
 		this.password = password;
 	}
 	public UserCredentials() {
-		super();
 	}
-
+	
+	
 }
+
