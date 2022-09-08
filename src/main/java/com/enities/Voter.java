@@ -13,7 +13,6 @@ public class Voter {
 	private int id;
 	private String votername;
 	private String adharid;
-	private Date addedDate;
 	private String email;
 	private String password;
 	
@@ -35,12 +34,6 @@ public class Voter {
 	public void setAdharid(String adharid) {
 		this.adharid = adharid;
 	}
-	public Date getAddedDate() {
-		return addedDate;
-	}
-	public void setAddedDate(Date addedDate) {
-		this.addedDate = addedDate;
-	}
 	public String getEmail() {
 		return email;
 	}
@@ -59,7 +52,6 @@ public class Voter {
 		this.id = new Random().nextInt(1000000); 
 		this.votername = votername;
 		this.adharid = adharid;
-		this.addedDate = addedDate;
 		this.email = email;
 		this.password = password;
 	}

@@ -1,6 +1,15 @@
 package com.servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Set;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -20,7 +29,44 @@ public class RegisterUserId extends HttpServlet {
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		try {
+			PrintWriter out=response.getWriter();
+			Class.forName("com.mysql..cj.jdbc.Driver");
+			Connection con=DriverManager.getConnection("jdbc:mysql://localhost/votersystem","root","admin@123"); 
+			System.out.println("connected");
+			String name = request.getParameter("votername");
+			String aadhar = request.getParameter("voteraadhar");
+			String email = request.getParameter("voteremailaddress");
+			String password = request.getParameter("voterpassword");
+			
+			PreparedStatement voterdata = con.prepareStatement("select name from users where name=? adharid=? email=? password=?");
+			voterdata.setString(1, name);
+			voterdata.setString(2, aadhar);
+			voterdata.setString(2, email);
+			voterdata.setString(2, password);
+			
+			ResultSet rs=voterdata.executeQuery();
+			
+			if(rs.next())
+			{
+				RequestDispatcher rd= request.getRequestDispatcher("index.jsp");
+				rd.forward(request, response);
+			}
+			else {
+				out.println("<h1>login fail</h1>");
+			}
+			con.close(); 
+		} catch (ClassNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}  
 
+		
+		
 		try {
 			String name = request.getParameter("votername");
 			String aadhar = request.getParameter("voteraadhar");
@@ -36,8 +82,8 @@ public class RegisterUserId extends HttpServlet {
 			usercredentials.getEmail() + " : " + 
 			usercredentials.getPassword());
 			
-			String sql = " insert into users (name, aadhar, email, password)"
-				    + " values (getName(), getAadhar(), getEmail(), getPassword(),)";
+
+			
 		}
 		catch (Exception e) {
 			e.printStackTrace(); 
