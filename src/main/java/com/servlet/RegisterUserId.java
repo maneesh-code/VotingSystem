@@ -32,33 +32,33 @@ public class RegisterUserId extends HttpServlet {
 		
 		try {
 			PrintWriter out=response.getWriter();
-			Class.forName("com.mysql..cj.jdbc.Driver");
+			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection con=DriverManager.getConnection("jdbc:mysql://localhost/votersystem","root","admin@123"); 
-			System.out.println("connected");
 			String name = request.getParameter("votername");
 			String aadhar = request.getParameter("voteraadhar");
 			String email = request.getParameter("voteremailaddress");
 			String password = request.getParameter("voterpassword");
 			
-			PreparedStatement voterdata = con.prepareStatement("select name from users where name=? adharid=? email=? password=?");
+			PreparedStatement voterdata = con.prepareStatement("insert into users (name, adharid, email, password)"
+					+ " values(?, ?, ?, ?)");
 			voterdata.setString(1, name);
 			voterdata.setString(2, aadhar);
-			voterdata.setString(2, email);
-			voterdata.setString(2, password);
+			voterdata.setString(3, email);
+			voterdata.setString(4, password);
 			
-			ResultSet rs=voterdata.executeQuery();
+			voterdata.execute();
 			
-			if(rs.next())
-			{
-				RequestDispatcher rd= request.getRequestDispatcher("index.jsp");
-				rd.forward(request, response);
-			}
-			else {
-				out.println("<h1>login fail</h1>");
-			}
+//			if(voterdata.next())
+//			{
+//				RequestDispatcher rd= request.getRequestDispatcher("index.jsp");
+//				rd.forward(request, response);
+//			}
+//			else {
+//				out.println("<h1>login fail</h1>");
+//			}
 			con.close(); 
 			} catch (ClassNotFoundException e1) {
-				// TODO Auto-generated catch block
+				// TODO Auto-generated cac
 				e1.printStackTrace();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
