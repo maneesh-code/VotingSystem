@@ -42,7 +42,7 @@ public class RegisterUserId extends HttpServlet {
 			PreparedStatement voterdata = con.prepareStatement("insert into users (name, adharid, email, password)"
 					+ " values(?, ?, ?, ?)");
 			voterdata.setString(1, name);
-			voterdata.setString(2, aadhar);
+			voterdata.setString(2, aadhar);	
 			voterdata.setString(3, email);
 			voterdata.setString(4, password);
 			
