@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -30,11 +31,20 @@ public class loginUserId extends HttpServlet {
 			String email = request.getParameter("voteremailaddress");
 			String password = request.getParameter("voterpassword");
 			
-			PreparedStatement voterdata = con.prepareStatement("select * from users where email=? and pass=?");
+			PreparedStatement voterdata = con.prepareStatement("select * from users where email=?");
 			voterdata.setString(1, email);
-			voterdata.setString(2, password);
+			//voterdata.setString(2, password);
+			ResultSet rs = voterdata.executeQuery();
 			
-			voterdata.execute()	;
+			if(rs.next()){
+				String databasepassword = rs.getString("password");
+				if(password.equals(databasepassword)) {
+					System.out.println("Logged in User");
+				}
+				else {
+					System.out.println("Wrong Credentials!");
+				}
+			}
 			
 			con.close(); 	
 			} catch (ClassNotFoundException e1) {
@@ -56,9 +66,6 @@ public class loginUserId extends HttpServlet {
 			UserCredentials usercredentials = new UserCredentials(0, name, aadhar, email, password);
 			
 			System.out.println(
-			usercredentials.getVoterid() + " : " + 
-			usercredentials.getName() + " : " +
-			usercredentials.getAadhar() + " : " +
 			usercredentials.getEmail() + " : " + 
 			usercredentials.getPassword());
 			
