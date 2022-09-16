@@ -13,12 +13,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.credentials.UserCredentials;
 
-@WebServlet("/register_user_id")
-public class RegisterUserId extends HttpServlet {
+@WebServlet("/login_user_id")
+public class loginUserId extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 
-    public RegisterUserId() {
+    public loginUserId() {
 
     }
 
@@ -27,21 +27,16 @@ public class RegisterUserId extends HttpServlet {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection con=DriverManager.getConnection("jdbc:mysql://localhost/votersystem","root","admin@123"); 
-			String name = request.getParameter("votername");
-			String aadhar = request.getParameter("voteraadhar");
 			String email = request.getParameter("voteremailaddress");
 			String password = request.getParameter("voterpassword");
 			
-			PreparedStatement voterdata = con.prepareStatement("insert into users (name, adharid, email, password)"
-					+ " values(?, ?, ?, ?)");
-			voterdata.setString(1, name);
-			voterdata.setString(2, aadhar);	
-			voterdata.setString(3, email);
-			voterdata.setString(4, password);
+			PreparedStatement voterdata = con.prepareStatement("select * from users where email=? and pass=?");
+			voterdata.setString(1, email);
+			voterdata.setString(2, password);
 			
 			voterdata.execute()	;
 			
-			con.close(); 
+			con.close(); 	
 			} catch (ClassNotFoundException e1) {
 				
 				e1.printStackTrace();
