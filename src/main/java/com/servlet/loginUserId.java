@@ -1,6 +1,8 @@
 package com.servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.net.CookieManager;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -8,6 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -26,6 +29,7 @@ public class loginUserId extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		try {
+			PrintWriter out = response.getWriter();
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection con=DriverManager.getConnection("jdbc:mysql://localhost/votersystem","root","admin@123"); 
 			String email = request.getParameter("voteremailaddress");
@@ -40,11 +44,15 @@ public class loginUserId extends HttpServlet {
 				String databasepassword = rs.getString("password");
 				if(password.equals(databasepassword)) {
 					System.out.println("Logged in User");
+					response.sendRedirect("myaccount.jsp");
 				}
 				else {
 					System.out.println("Wrong Credentials!");
+					out.print("<h1>Wrong Credentials!</h1>");
 				}
 			}
+			Cookie c = new Cookie("email",email);
+			response.addCookie(c);
 			
 			con.close(); 	
 			} catch (ClassNotFoundException e1) {
@@ -54,7 +62,6 @@ public class loginUserId extends HttpServlet {
 				
 				e.printStackTrace();
 			}
-		    response.sendRedirect("voterlogin.jsp");
 
 
 		try {
