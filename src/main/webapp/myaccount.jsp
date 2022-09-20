@@ -1,5 +1,30 @@
+<%@page import="com.credentials.UserCredentials"%>
+<%@page import="java.io.IOException"%>
+<%@page import="java.sql.SQLException"%>
+<%@page import="java.sql.PreparedStatement"%>
+<%@page import="java.sql.DriverManager"%>
+<%@page import="java.sql.Connection"%>
+<%@page import="java.io.PrintWriter"%>
+<%@page import="com.servlet.loginUserId" %>
+<%@page import="org.apache.jasper.tagplugins.jstl.core.Import"%>
+<%@ page import = "com.servlet.loginUserId" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    
+<%
+try {
+	Class.forName("com.mysql.cj.jdbc.Driver");
+	Connection con=DriverManager.getConnection("jdbc:mysql://localhost/votersystem","root","admin@123"); 
+	String email = (String)session.getAttribute("useremail");	
+	PreparedStatement voterdata = con.prepareStatement("select * from users where email=?");
+	voterdata.setString(1, email);
+	System.out.println("hii this is the useremail" + email);
+}
+catch (ClassNotFoundException e1) {e1.printStackTrace();}
+catch (SQLException e) {e.printStackTrace();}
+catch (Exception e) {e.printStackTrace();}
+%>
+
 <!DOCTYPE html>
 <html>
 <head>

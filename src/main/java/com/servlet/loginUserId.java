@@ -14,12 +14,15 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
+import javax.servlet.*;  
+import javax.servlet.http.*;  
 import com.credentials.UserCredentials;
 
 @WebServlet("/login_user_id")
 public class loginUserId extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private String email;
+	private String password;
        
 
     public loginUserId() {
@@ -44,6 +47,10 @@ public class loginUserId extends HttpServlet {
 				String databasepassword = rs.getString("password");
 				if(password.equals(databasepassword)) {
 					System.out.println("Logged in User");
+					
+			        HttpSession session=request.getSession();  
+					session.setAttribute("useremail",email);
+					
 					response.sendRedirect("myaccount.jsp");
 				}
 				else {
@@ -55,32 +62,18 @@ public class loginUserId extends HttpServlet {
 			response.addCookie(c);
 			
 			con.close(); 	
-			} catch (ClassNotFoundException e1) {
-				
-				e1.printStackTrace();
-			} catch (SQLException e) {
-				
-				e.printStackTrace();
 			}
 
+		catch (ClassNotFoundException e1) {e1.printStackTrace();}
+		catch (SQLException e) {e.printStackTrace();}
+		catch (Exception e) {e.printStackTrace();}
+	}  
 
-		try {
-			String name = request.getParameter("votername");
-			String aadhar = request.getParameter("voteraadhar");
-			String email = request.getParameter("voteremailaddress");
-			String password = request.getParameter("voterpassword");
-			
-			UserCredentials usercredentials = new UserCredentials(0, name, aadhar, email, password);
-			
-			System.out.println(
-			usercredentials.getEmail() + " : " + 
-			usercredentials.getPassword());
-			
-			
-		}
-		catch (Exception e) {
-			e.printStackTrace(); 
-		}
+	private void loginUserId(String email, String password) {
+		loginUserId obj = new loginUserId();
+		obj.loginUserId(email, password);
 	}
+	
 
 }
+
