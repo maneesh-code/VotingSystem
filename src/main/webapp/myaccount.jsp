@@ -1,3 +1,4 @@
+<%@page import="java.sql.ResultSet"%>
 <%@page import="com.credentials.UserCredentials"%>
 <%@page import="java.io.IOException"%>
 <%@page import="java.sql.SQLException"%>
@@ -8,8 +9,7 @@
 <%@page import="com.servlet.loginUserId" %>
 <%@page import="org.apache.jasper.tagplugins.jstl.core.Import"%>
 <%@ page import = "com.servlet.loginUserId" %>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
     
 <%
 try {
@@ -17,8 +17,8 @@ try {
 	Connection con=DriverManager.getConnection("jdbc:mysql://localhost/votersystem","root","admin@123"); 
 	String email = (String)session.getAttribute("useremail");	
 	PreparedStatement voterdata = con.prepareStatement("select * from users where email=?");
-	voterdata.setString(1, email);
-	System.out.println("hii this is the useremail" + email);
+	voterdata.setString(1, (String)session.getAttribute("useremail"));
+	ResultSet rs = voterdata.executeQuery();
 }
 catch (ClassNotFoundException e1) {e1.printStackTrace();}
 catch (SQLException e) {e.printStackTrace();}
@@ -58,8 +58,12 @@ catch (Exception e) {e.printStackTrace();}
           <div class="card-body text-center">
             <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
               class="rounded-circle img-fluid" style="width: 150px;">
-            <h5 class="my-3">Demo</h5>
-            <p class="text-muted mb-1">Full Stack Developer</p>
+              <%	if(rs.next()){
+		String username = rs.getString("name");
+		String useradharid= rs.getString("adharid");
+	}%>
+            <h5 class="my-3"><%=name%></h5>
+            <p class="text-muted mb-1"><%%>Hii</p>
             <p class="text-muted mb-4">Bay Area, San Francisco, CA</p>
             <div class="d-flex justify-content-center mb-2">
               <button type="button" class="btn btn-primary">Follow</button>
@@ -111,7 +115,8 @@ catch (Exception e) {e.printStackTrace();}
                 <p class="mb-0">Email</p>
               </div>
               <div class="col-sm-9">
-                <p class="text-muted mb-0">example@example.com</p>
+                <%String email = (String)session.getAttribute("useremail");%>
+                <p class="text-muted mb-0"><%=email%></p>
               </div>
             </div>
             <hr>
@@ -129,7 +134,7 @@ catch (Exception e) {e.printStackTrace();}
                 <p class="mb-0">Mobile</p>
               </div>
               <div class="col-sm-9">
-                <p class="text-muted mb-0">(098) 765-4321</p>
+                <p class="text-muted mb-0"></p>
               </div>
             </div>
             <hr>

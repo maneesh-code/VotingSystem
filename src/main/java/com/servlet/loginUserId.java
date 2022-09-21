@@ -2,7 +2,6 @@ package com.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.net.CookieManager;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -14,15 +13,11 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.*;  
 import javax.servlet.http.*;  
-import com.credentials.UserCredentials;
 
 @WebServlet("/login_user_id")
 public class loginUserId extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private String email;
-	private String password;
        
 
     public loginUserId() {
@@ -68,12 +63,5 @@ public class loginUserId extends HttpServlet {
 		catch (SQLException e) {e.printStackTrace();}
 		catch (Exception e) {e.printStackTrace();}
 	}  
-
-	private void loginUserId(String email, String password) {
-		loginUserId obj = new loginUserId();
-		obj.loginUserId(email, password);
-	}
-	
-
 }
 
