@@ -89,50 +89,78 @@
       <div class="col-lg-8">
         <div class="card mb-4">
           <div class="card-body">
+          	<form class="m-0" action="">
             <div class="row">
+            <p>Edit Personal Details</p>
               <div class="col-sm-3">
                 <p class="mb-0">Full Name</p>
               </div>
-              <div class="col-sm-9">
-                <p class="text-muted mb-0 text-capitalize"><%=username %></p>
-              </div>
+                <div class="form-group col-sm-9">
+					<input 
+					name="votername"
+					type="text" 
+					class="form-control form-control-sm" 
+					id="votername" 
+					aria-describedby="emailHelp">
+				</div>
             </div>
             <hr>
             <div class="row">
               <div class="col-sm-3">
                 <p class="mb-0">Email</p>
               </div>
-              <div class="col-sm-9">
-                <p class="text-muted mb-0"><%=email%></p>
-              </div>
+				<div class="form-group col-sm-9	">
+					<input 
+					name="voteraadhar"
+					type="text" 
+					class="form-control form-control-sm" 
+					id="voterAadhar" 
+					aria-describedby="emailHelp">
+				</div>
             </div>
             <hr>
             <div class="row">
               <div class="col-sm-3">
                 <p class="mb-0">Phone</p>
               </div>
-              <div class="col-sm-9">
-                <p class="text-muted mb-0">(097) 234-5678</p>
-              </div>
+				<div class="form-group col-sm-9	">
+					<input 
+					name="voteraadhar"
+					type="text" 
+					class="form-control form-control-sm" 
+					id="voterAadhar" 
+					aria-describedby="emailHelp">
+				</div>
             </div>
             <hr>
             <div class="row">
               <div class="col-sm-3">
                 <p class="mb-0">Adhar ID</p>
               </div>
-              <div class="col-sm-9">
-                <p class="text-muted mb-0"><%=useradharid%></p>
-              </div>
+				<div class="form-group col-sm-9	">
+					<input 
+					name="voteraadhar"
+					type="text" 
+					class="form-control form-control-sm" 
+					id="voterAadhar" 
+					aria-describedby="emailHelp">
+				</div>
             </div>
             <hr>
             <div class="row">
               <div class="col-sm-3">
                 <p class="mb-0">Address</p>
               </div>
-              <div class="col-sm-9">
-                <p class="text-muted mb-0">Bay Area, San Francisco, CA</p>
-              </div>
+				<div class="form-group col-sm-9	">
+					<input 
+					name="voteraadhar"
+					type="text" 
+					class="form-control form-control-sm" 
+					id="voterAadhar" 
+					aria-describedby="emailHelp">
+				</div>
             </div>
+            </form>
           </div>
         </div>
         <div class="row">

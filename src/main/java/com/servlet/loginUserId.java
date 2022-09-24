@@ -44,7 +44,10 @@ public class loginUserId extends HttpServlet {
 					System.out.println("Logged in User");
 					
 			        HttpSession session=request.getSession();  
+					
 					session.setAttribute("useremail",email);
+					session.setAttribute("username", rs.getString("name"));
+					session.setAttribute("useradharid", rs.getString("adharid"));
 					
 					response.sendRedirect("myaccount.jsp");
 				}
