@@ -9,7 +9,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -48,16 +47,17 @@ public class loginUserId extends HttpServlet {
 					session.setAttribute("useremail",email);
 					session.setAttribute("username", rs.getString("name"));
 					session.setAttribute("useradharid", rs.getString("adharid"));
+					session.setAttribute("userphone", rs.getString("phone"));
+					session.setAttribute("useraddress", rs.getString("address"));
+
 					
 					response.sendRedirect("myaccount.jsp");
-				}
+			}
 				else {
 					System.out.println("Wrong Credentials!");
 					out.print("<h1>Wrong Credentials!</h1>");
 				}
 			}
-			Cookie c = new Cookie("email",email);
-			response.addCookie(c);
 			
 			con.close(); 	
 			}
@@ -67,4 +67,3 @@ public class loginUserId extends HttpServlet {
 		catch (Exception e) {e.printStackTrace();}
 	}  
 }
-

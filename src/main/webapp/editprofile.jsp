@@ -14,7 +14,7 @@
 <% 
 	String email = (String)session.getAttribute("useremail");	
 	String username = (String)session.getAttribute("username");
-	String useradharid = (String)session.getAttribute("useradharid");
+	String useradharid = (String)session.getAttribute("useradharid");	
 %>
 
 <!DOCTYPE html>
@@ -89,7 +89,7 @@
       <div class="col-lg-8">
         <div class="card mb-4">
           <div class="card-body">
-          	<form class="m-0" action="">
+          	<form class="m-0" action="edit_user_profile" method="post">
             <div class="row">
             <p>Edit Personal Details</p>
               <div class="col-sm-3">
@@ -97,25 +97,10 @@
               </div>
                 <div class="form-group col-sm-9">
 					<input 
-					name="votername"
+					name="newvotername"
 					type="text" 
 					class="form-control form-control-sm" 
-					id="votername" 
-					aria-describedby="emailHelp">
-				</div>
-            </div>
-            <hr>
-            <div class="row">
-              <div class="col-sm-3">
-                <p class="mb-0">Email</p>
-              </div>
-				<div class="form-group col-sm-9	">
-					<input 
-					name="voteraadhar"
-					type="text" 
-					class="form-control form-control-sm" 
-					id="voterAadhar" 
-					aria-describedby="emailHelp">
+					id="votername">
 				</div>
             </div>
             <hr>
@@ -125,11 +110,10 @@
               </div>
 				<div class="form-group col-sm-9	">
 					<input 
-					name="voteraadhar"
+					name="newvoterphone"
 					type="text" 
 					class="form-control form-control-sm" 
-					id="voterAadhar" 
-					aria-describedby="emailHelp">
+					id="newvoterphone">
 				</div>
             </div>
             <hr>
@@ -139,11 +123,10 @@
               </div>
 				<div class="form-group col-sm-9	">
 					<input 
-					name="voteraadhar"
+					name="newvoteraadhar"
 					type="text" 
 					class="form-control form-control-sm" 
-					id="voterAadhar" 
-					aria-describedby="emailHelp">
+					id="voteraadhar">
 				</div>
             </div>
             <hr>
@@ -153,12 +136,18 @@
               </div>
 				<div class="form-group col-sm-9	">
 					<input 
-					name="voteraadhar"
+					name="newvoteradd"
 					type="text" 
 					class="form-control form-control-sm" 
-					id="voterAadhar" 
-					aria-describedby="emailHelp">
+					id="newvoteradd">
 				</div>
+            </div>
+            <div class="row">
+            <div class="col-sm-3">
+            </div>
+				<div class="col-sm-9">
+                 <button type="submit" class="btn btn-primary btn-block float-right">Update</button>
+            	</div>
             </div>
             </form>
           </div>

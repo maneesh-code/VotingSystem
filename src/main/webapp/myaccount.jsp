@@ -8,13 +8,15 @@
 <%@page import="java.io.PrintWriter"%>
 <%@page import="com.servlet.loginUserId" %>
 <%@page import="org.apache.jasper.tagplugins.jstl.core.Import"%>
-<%@ page import = "com.servlet.loginUserId" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
     
 <% 
 	String email = (String)session.getAttribute("useremail");	
 	String username = (String)session.getAttribute("username");
 	String useradharid = (String)session.getAttribute("useradharid");
+	String userphone = (String)session.getAttribute("userphone");
+	String useraddress = (String)session.getAttribute("useraddress");
+
 %>
 
 <!DOCTYPE html>
@@ -54,7 +56,8 @@
             <p class="text-muted mb-1 text-capitalize"><%=username %></p>
             <p class="text-muted mb-4">Bay Area, San Francisco, CA</p>
             <div class="d-flex justify-content-center mb-2">
-              <button type="button" class="btn btn-primary">Edit Profile</button>
+            <!-- <a href="editprofile.jsp?email=useremail" type="button" class="btn btn-primary">Edit Profile</a> -->  
+              <a href="editprofile.jsp?email=useremail" type="button" class="btn btn-primary">Edit Profile</a>
               <button type="button" class="btn btn-outline-primary ms-1">Message</button>
             </div>
           </div>
@@ -94,7 +97,7 @@
                 <p class="mb-0">Full Name</p>
               </div>
               <div class="col-sm-9">
-                <p class="text-muted mb-0 text-capitalize"><%=username %></p>
+                <p class="text-muted mb-0 text-capitalize"><%=username%></p>
               </div>
             </div>
             <hr>
@@ -112,7 +115,7 @@
                 <p class="mb-0">Phone</p>
               </div>
               <div class="col-sm-9">
-                <p class="text-muted mb-0">(097) 234-5678</p>
+                <p class="text-muted mb-0"><%=userphone%></p>
               </div>
             </div>
             <hr>
@@ -130,7 +133,7 @@
                 <p class="mb-0">Address</p>
               </div>
               <div class="col-sm-9">
-                <p class="text-muted mb-0">Bay Area, San Francisco, CA</p>
+                <p class="text-muted mb-0"><%=useraddress%></p>
               </div>
             </div>
           </div>

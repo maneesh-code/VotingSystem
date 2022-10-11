@@ -10,8 +10,19 @@
   	<description></description>
   	<servlet-class>com.servlet.RegisterVoterId</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>EditUserProfile</servlet-name>
+  	<display-name>EditUserProfile</display-name>
+  	<description></description>
+  	<servlet-class>com.servlet.EditUserProfile</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>RegisterVoterId</servlet-name>
   	<url-pattern>/RegisterVoterId</url-pattern>
   </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>EditUserProfile</servlet-name>
+  	<url-pattern>/EditUserProfile</url-pattern>
+  </servlet-mapping>
+
 </web-app>

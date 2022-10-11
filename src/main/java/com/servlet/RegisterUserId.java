@@ -11,8 +11,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.credentials.UserCredentials;
-
 @WebServlet("/register_user_id")
 public class RegisterUserId extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -39,7 +37,7 @@ public class RegisterUserId extends HttpServlet {
 			voterdata.setString(3, email);
 			voterdata.setString(4, password);
 			
-			voterdata.execute()	;
+			voterdata.execute();
 			
 			con.close(); 
 			} catch (ClassNotFoundException e1) {
@@ -51,27 +49,6 @@ public class RegisterUserId extends HttpServlet {
 			}
 		    response.sendRedirect("voterlogin.jsp");
 
-
-		try {
-			String name = request.getParameter("votername");
-			String aadhar = request.getParameter("voteraadhar");
-			String email = request.getParameter("voteremailaddress");
-			String password = request.getParameter("voterpassword");
-			
-			UserCredentials usercredentials = new UserCredentials(0, name, aadhar, email, password);
-			
-			System.out.println(
-			usercredentials.getVoterid() + " : " + 
-			usercredentials.getName() + " : " +
-			usercredentials.getAadhar() + " : " +
-			usercredentials.getEmail() + " : " + 
-			usercredentials.getPassword());
-			
-			
-		}
-		catch (Exception e) {
-			e.printStackTrace(); 
-		}
 	}
-
+	
 }
