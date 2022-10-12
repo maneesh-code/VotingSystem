@@ -11,11 +11,31 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
     
 <% 
-	String email = (String)session.getAttribute("useremail");	
-	String username = (String)session.getAttribute("username");
-	String useradharid = (String)session.getAttribute("useradharid");
-	String userphone = (String)session.getAttribute("userphone");
-	String useraddress = (String)session.getAttribute("useraddress");
+String email = (String)session.getAttribute("useremail");	
+String username = null;
+String useradharid= null;
+String userphone= null;
+String useraddress= null;
+try{
+	Class.forName("com.mysql.cj.jdbc.Driver");
+	Connection con=DriverManager.getConnection("jdbc:mysql://localhost/votersystem","root","admin@123"); 
+	PreparedStatement voterdata = con.prepareStatement("select * from users where email=?");
+	voterdata.setString(1, email);
+	ResultSet rs = voterdata.executeQuery();
+	
+	if(rs.next()){
+		
+		 username = rs.getString("name");
+		 useradharid = rs.getString("adharid");
+		 userphone = rs.getString("phone");
+		 useraddress = rs.getString("address");
+		}
+	con.close(); 	
+
+	}
+		catch (ClassNotFoundException e1) {e1.printStackTrace();}
+		catch (SQLException e) {e.printStackTrace();}
+		catch (Exception e) {e.printStackTrace();}
 
 %>
 
@@ -53,7 +73,7 @@
             <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
               class="rounded-circle img-fluid" style="width: 150px;">
             <h5 class="my-3"></h5>
-            <p class="text-muted mb-1 text-capitalize"><%=username %></p>
+            <p class="text-muted mb-1 text-capitalize"><%=username%></p>
             <p class="text-muted mb-4">Bay Area, San Francisco, CA</p>
             <div class="d-flex justify-content-center mb-2">
             <!-- <a href="editprofile.jsp?email=useremail" type="button" class="btn btn-primary">Edit Profile</a> -->  
